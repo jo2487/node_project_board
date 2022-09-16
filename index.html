@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- express 업로드 시 파일 참조 -->
+    <link href="css/style.css" rel="stylesheet" />
+    <!-- liveServer 연결 시 파일 참조 -->
+    <link href="public/css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <button type="button" class="btn btn-primary" onclick="a()">Primary</button>
+    <section class="notice">
+      <div class="page-title">
+        <div class="container">
+          <h3>공지사항</h3>
+        </div>
+      </div>
+      <!-- board list area -->
+      <div id="board-list">
+        <div class="container">
+          <table class="board-table">
+            <thead>
+              <tr>
+                <th scope="col" class="th-num">번호</th>
+                <th scope="col" class="th-title">제목</th>
+                <th scope="col" class="th-title">작성자</th>
+                <th scope="col" class="th-date">등록일</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>3</td>
+                <th>
+                  <a href="./post_registration.html">제목 1</a>
+                </th>
+                <td>권형석</td>
+                <td>2017.07.13</td>
+              </tr>
+
+              <tr>
+                <td>2</td>
+                <th>
+                  <a href="./post_registration.html"
+                    >공지사항 안내입니다. 이용해주셔서 감사합니다</a
+                  >
+                </th>
+                <td>조성혁</td>
+                <td>2017.06.15</td>
+              </tr>
+
+              <tr>
+                <td>1</td>
+                <th>
+                  <a href="./post_registration.html"
+                    >공지사항 안내입니다. 이용해주셔서 감사합니다</a
+                  >
+                </th>
+                <td>조성혁</td>
+                <td>2017.06.15</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    <script src="/public/js/script.js"></script>
+  </body>
+</html>

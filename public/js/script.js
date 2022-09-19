@@ -1,3 +1,5 @@
+const db = require("../../database.js");
+
 function check() {
   let ID = document.getElementById("exampleInputEmail1").value;
   let password = document.getElementById("exampleInputPassword1").value;
@@ -15,19 +17,6 @@ function check() {
     }
   }
 }
-function a() {
-  alert("Hello");
-}
-
-function confirm_cancle() {
-  let result = confirm("취소하시겠습니까?");
-  if (result == true) {
-    history.back();
-  } else {
-    alert("다시 작성해주세요!");
-  }
-}
-
 function update() {
   let script = document.getElementById("script").value;
   alert("수정 완료"); // 이전 script와 수정된 script 값이 다르면 수정 완료
@@ -41,3 +30,9 @@ function confirm_cancle() {
     alert("다시 작성해주세요!");
   }
 }
+
+db.query("SELECT * FROM board_table", (error, rows, fields) => {
+  if (error) throw error;
+  console.log("User info is", rows);
+  console.log(rows[0].user_id);
+});

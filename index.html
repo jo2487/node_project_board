@@ -43,36 +43,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>3</td>
-                <th>
-                  <a href="./member_confirmation.html">제목 1</a>
-                </th>
-                <td>권형석</td>
-                <td>2017.07.13</td>
-              </tr>
-
-              <tr>
-                <td>2</td>
-                <th>
-                  <a href="./member_confirmation.html"
-                    >공지사항 안내입니다. 이용해주셔서 감사합니다</a
-                  >
-                </th>
-                <td>조성혁</td>
-                <td>2017.06.15</td>
-              </tr>
-
-              <tr>
-                <td>1</td>
-                <th>
-                  <a href="./member_confirmation.html"
-                    >공지사항 안내입니다. 이용해주셔서 감사합니다</a
-                  >
-                </th>
-                <td>조성혁</td>
-                <td>2017.06.15</td>
-              </tr>
+              <script src="./public/js/front.js"></script>
             </tbody>
           </table>
         </div>
@@ -83,5 +54,25 @@
       integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
       crossorigin="anonymous"
     ></script>
+    <script>
+      for (let i = 0; i < 2; i++) {
+        const config = {
+          method: "get",
+        };
+        fetch("http://localhost:8080/api/list", config)
+          .then((res) => res.json())
+          .then((data) => {
+            document.getElementById(`user_id${i}`).innerHTML = data[i].user_id;
+            document.getElementById(`registration_order${i}`).innerHTML =
+              data[i].registration_order;
+            document.getElementById(`registration_date${i}`).innerHTML =
+              data[i].registration_date;
+            document.getElementById(`script${i}`).innerHTML = data[i].script;
+            console.log(typeof data[i].registration_date);
+          })
+          .catch((error) => console.log(error));
+      }
+    </script>
+    <script src="./public/js/script.js"></script>
   </body>
 </html>

@@ -38,31 +38,34 @@
         />
       </div>
       <div style="margin-left: 10px; margin-top: 23px">
-        <button type="submit" class="btn btn-primary" onclick="member_check();">
+        <button type="submit" class="btn btn-primary" onclick="member_check()">
           로그인
         </button>
       </div>
     </form>
     <script>
-      import fetch from "node-fetch";
-      function member_check() {
+      const api_get = async (index) => {
+        let hostApiData = await fetch(
+          `http://localhost:8080/api/list/${index}`
+        );
+        let hostApiJson = await hostApiData.json();
+        return hostApiJson;
+      };
+      const member_check = async () => {
         let ID = document.getElementById("exampleInputEmail1").value;
         let password = document.getElementById("exampleInputPassword1").value;
-        const config = {
-          method: "get",
-        };
-        fetch("http://localhost:8080/api/list", config)
-          .then((res) => res.json())
-          .then((data) => {
-            if (ID == data.user_id && password == data.password) {
-              console.log("Success");
-            } else {
-              console.log("Failed");
-            }
-          });
-      }
+        let now_index = location.href.charAt(location.href.length - 1);
+        let jsonData = await api_get(now_index);
+        if (jsonData[0].user_id == ID && jsonData[0].password == password) {
+          location.href = `/post_update/${now_index}`;
+          console.log("Success");
+          alert("Success");
+        } else {
+          console.log("fail");
+          alert("fail");
+        }
+      };
     </script>
-    <script src="./public/js/script.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"

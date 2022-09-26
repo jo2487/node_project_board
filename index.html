@@ -54,23 +54,34 @@
       integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
       crossorigin="anonymous"
     ></script>
+    <script type="module" src="database.js"></script>
     <script>
-      for (let i = 0; i < 2; i++) {
-        const config = {
-          method: "get",
-        };
-        fetch("http://localhost:8080/api/list", config)
-          .then((res) => res.json())
-          .then((data) => {
-            document.getElementById(`user_id${i}`).innerHTML = data[i].user_id;
-            document.getElementById(`registration_order${i}`).innerHTML =
-              data[i].registration_order;
-            document.getElementById(`registration_date${i}`).innerHTML =
-              data[i].registration_date;
-            document.getElementById(`script${i}`).innerHTML = data[i].script;
-          })
-          .catch((error) => console.log(error));
-      }
+      // obj에 json 데이터 저장을 먼저 한 후 다음 기능 실행
+      fetch("http://localhost:8080/api/list")
+        .then((res) => res.json())
+        .then((data) => {
+          obj = Object.keys(data).length;
+        })
+        .then(() => {
+          for (let i = 0; i < obj; i++) {
+            const config = {
+              method: "get",
+            };
+            fetch("http://localhost:8080/api/list", config)
+              .then((res) => res.json())
+              .then((data) => {
+                document.getElementById(`user_id${i}`).innerHTML =
+                  data[i].user_id;
+                document.getElementById(`registration_order${i}`).innerHTML =
+                  data[i].registration_order;
+                document.getElementById(`registration_date${i}`).innerHTML =
+                  data[i].registration_date;
+                document.getElementById(`script${i}`).innerHTML =
+                  data[i].script;
+              })
+              .catch((error) => console.log(error));
+          }
+        });
     </script>
     <script src="./public/js/script.js"></script>
   </body>

@@ -14,10 +14,20 @@ app.get("/", function (req, res) {
 app.get("/post_registration.html", function (req, res) {
   res.sendFile(path.join(__dirname + "/post_registration.html"));
 });
-app.get("/post_update.html", function (req, res) {
+// app.get("/post_update.html", function (req, res) {
+//   res.sendFile(path.join(__dirname + "/post_update.html"));
+// });
+app.get("/post_update/:index", (req, res) => {
+  var params = req.params;
+  console.log(params);
   res.sendFile(path.join(__dirname + "/post_update.html"));
 });
-app.get("/member_confirmation.html", function (req, res) {
+// app.get("/member_confirmation.html", function (req, res) {
+//   res.sendFile(path.join(__dirname + "/member_confirmation.html"));
+// });
+app.get("/member_confirmation/:index", (req, res) => {
+  var params = req.params;
+  console.log(params);
   res.sendFile(path.join(__dirname + "/member_confirmation.html"));
 });
 
@@ -27,6 +37,11 @@ app.get("/practice", function (req, res) {
 
 app.get("/api/list", (req, res) => {
   db.query("SELECT * FROM board_table", (err, result) => {
+    res.send(result);
+  });
+});
+app.get("/count/row", (req, res) => {
+  db.query("SELECT COUNT(*) FROM board_table", (err, result) => {
     res.send(result);
   });
 });

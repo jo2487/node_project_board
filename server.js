@@ -4,12 +4,6 @@ const app = express();
 const db = require("./database");
 app.use("/public", express.static(path.join(__dirname + "/public")));
 
-const user = [
-  { id: 1, name: "유저1" },
-  { id: 2, name: "유저2" },
-  { id: 3, name: "유저3" },
-];
-
 app.listen(8080, function () {
   console.log("listening on 8080");
 });
@@ -35,4 +29,16 @@ app.get("/api/list", (req, res) => {
   db.query("SELECT * FROM board_table", (err, result) => {
     res.send(result);
   });
+});
+
+// index별로 Params통해서 DB row 분리
+app.get("/api/list/:index", (req, res) => {
+  var params = req.params;
+  console.log(params);
+  db.query(
+    "SELECT * FROM board_table where registration_order=" + params.index,
+    (err, result) => {
+      res.send(result);
+    }
+  );
 });

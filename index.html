@@ -68,7 +68,6 @@
             document.getElementById(`registration_date${i}`).innerHTML =
               data[i].registration_date;
             document.getElementById(`script${i}`).innerHTML = data[i].script;
-            console.log(typeof data[i].registration_date);
           })
           .catch((error) => console.log(error));
       }
